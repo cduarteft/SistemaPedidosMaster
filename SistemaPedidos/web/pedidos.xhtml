@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form>
+        <h:panelGrid>
+            <h:outputLabel for="grouped" value="Pedido:" />
+            <p:selectCheckboxMenu id="grouped" value="#{pedidosBean.selectedPedidos}" label="Monte seu Pedido"
+                                   filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                <f:selectItems value="#{pedidosBean.ped}" />
+            </p:selectCheckboxMenu>
+            
+       
+        </h:panelGrid>
+
+        <p:commandButton value="Visualizar Pedido" update="displayItems" oncomplete="PF('itemDialog').show()" style="margin-top:10px;" />
+
+        <p:dialog header="Detalhes do Pedido" modal="true" showEffect="fade" hideEffect="fade" widgetVar="itemDialog" width="250">
+            <p:outputPanel id="displayItems">
+
+                <p:dataList value="#{pedidosBean.selectedPedidos}" var="pedido" emptyMessage="Pedido não selecionado">
+                    <f:facet name="header">
+                        Pedidos
+                    </f:facet>
+                    #{pedido}
+                </p:dataList>
+            </p:outputPanel>
+        </p:dialog>
+    </h:form>
+
+
+
+
+
+
+</ui:decorate>
