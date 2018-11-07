@@ -11,28 +11,31 @@
        
         <p:fieldset legend ="Cadastro de Cliente">
             <p:panelGrid columns="2">
-                <h:outputLabel value="Nome"/> 
-                <h:inputText value="#{clientesBean.cliente.nome}"></h:inputText>
-                <h:outputLabel value="Sobrenome"/> 
-                <h:inputText value="#{clientesBean.cliente.sobrenome}"></h:inputText>
-                <h:outputLabel value="Endereço"/> 
-                <h:inputText value="#{clientesBean.cliente.endereco}"></h:inputText>
-                <h:outputLabel value="Email"/>
-                <h:inputText value="#{clientesBean.cliente.email}"></h:inputText>
+                <h:outputLabel for="nome" value="Nome"/> 
+                <p:inputText id="nome" value="#{clientesBean.cliente.nome}"></p:inputText>
+
+                <h:outputLabel for="sobrenome" value="Sobrenome"/> 
+                <p:inputText id="sobrenome" value="#{clientesBean.cliente.sobrenome}"></p:inputText>
+
+                <h:outputLabel for="endereco" value="Endereço"/> 
+                <p:inputText id="endereco" value="#{clientesBean.cliente.endereco}"></p:inputText>
+
+                <h:outputLabel for="email" value="Email"/>
+                <p:inputText id="email" value="#{clientesBean.cliente.email}"></p:inputText>
+
                 <h:outputLabel for="tel" value="Telefone"></h:outputLabel> 
                 <p:inputMask id="tel" value="#{clientesBean.cliente.telefone}" mask="(99) 99999-9999"></p:inputMask>
-                <p:outputLabel for="date" value="Data Nascimento" />
+
+                <h:outputLabel for="date" value="Data Nascimento" />
                 <p:inputMask id="date" value="#{clientesBean.cliente.dataNasc}" mask="99/99/9999"/>
    
             </p:panelGrid>  
-              <p:fieldset>
-             <p:toolbar>
-               <p:toolbarGroup>
-                 <p:commandButton value="Cadastrar" action="#{clientesBean.adicionarCliente()}"
-                                 update="@form"></p:commandButton>         
-               </p:toolbarGroup>  
+              <p:toolbar style="margin: 10px -3px 10px">
+                <p:toolbarGroup>
+                    <p:commandButton value="Cadastrar" action="#{clientesBean.adicionarCliente()}"
+                                     update="@form"></p:commandButton>         
+                </p:toolbarGroup>  
             </p:toolbar>
-              </p:fieldset>
            
             <p:dataTable value="#{clientesBean.clientes}" var="cliente">
 
