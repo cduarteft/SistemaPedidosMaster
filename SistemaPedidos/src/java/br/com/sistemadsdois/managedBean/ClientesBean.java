@@ -1,5 +1,6 @@
 package br.com.sistemadsdois.managedBean;
 
+import br.com.sistemadsdois.dao.ClienteDAO;
 import br.com.sistemadsdois.entidade.Cliente;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +13,19 @@ public class ClientesBean {
         
         private Cliente cliente = new Cliente();
         private List<Cliente> clientes = new ArrayList<>();
+        private ClienteDAO clienteDAO = new ClienteDAO();
         
         public void adicionarCliente(){
-            
-            clientes.add(cliente);
-            cliente = new Cliente();
-            
-            
+            clienteDAO.salvar(cliente);
+            cliente = new Cliente();     
+        }
+        
+        public void listar(){
+            clientes = clienteDAO.buscar();
+        }
+        
+        public void editar(Cliente c){
+            cliente = c;
         }
 
     public Cliente getCliente() {

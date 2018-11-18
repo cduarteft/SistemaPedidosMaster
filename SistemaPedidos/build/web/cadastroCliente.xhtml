@@ -30,12 +30,16 @@
                <p:toolbarGroup>
                  <p:commandButton value="Cadastrar" action="#{clientesBean.adicionarCliente()}"
                                  update="@form"></p:commandButton>         
+                   <p:commandButton value="Listar" action="#{clientesBean.listar()}"
+                                 update="@form"></p:commandButton>         
                </p:toolbarGroup>  
             </p:toolbar>
               </p:fieldset>
            
             <p:dataTable value="#{clientesBean.clientes}" var="cliente">
-
+                <p:column>
+                    <p:commandButton value="editar" action="#{clientesBean.editar(cliente)}" update=""></p:commandButton>
+                </p:column>
                 <p:column headerText="Cliente">
                     <h:outputText value="#{cliente.nome}"></h:outputText>
                 </p:column>
