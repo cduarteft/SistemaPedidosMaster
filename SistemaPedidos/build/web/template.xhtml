@@ -9,12 +9,17 @@
         <title>Loading Lanches</title>
     </h:head>
     <h:body>
-        <h1> Loading Lanches </h1>
+        <h:panelGrid columns="2">
+        <h:graphicImage library="imagens" name="logo.png" width="150px"></h:graphicImage>
+        <h1> Lanches </h1>
+        </h:panelGrid>
+        <h:form>
         <p:menubar>
                 <p:menuitem value="Home" url="index.jsf"></p:menuitem>
                 <p:menuitem value="Cadastro de Clientes" url="cadastroCliente.jsf"></p:menuitem>
                 <p:menuitem value="Efetuar Pedido" url="pedidos.jsf"></p:menuitem>
         </p:menubar>
+        </h:form>
          <hr/>
         <ui:insert> </ui:insert>
     </h:body>

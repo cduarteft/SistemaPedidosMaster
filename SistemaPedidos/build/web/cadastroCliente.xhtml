@@ -5,40 +5,38 @@
              xmlns:p="http://primefaces.org/ui"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
              template="template.xhtml"
-             xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:sc="http://xmlns.jcp.org/jsf/composite/sccomp"> 
              
-             <h:form>
+      <h:form>
        
         <p:fieldset legend ="Cadastro de Cliente">
-            <p:panelGrid columns="2">
+            <p:panelGrid columns="2" rendered="#{clientesBean.busca == false}">
                 <h:outputLabel value="Nome"/> 
-                <h:inputText value="#{clientesBean.cliente.nome}"></h:inputText>
+                <h:inputText value="#{clientesBean.entidade.nome}"></h:inputText>
                 <h:outputLabel value="Sobrenome"/> 
-                <h:inputText value="#{clientesBean.cliente.sobrenome}"></h:inputText>
+                <h:inputText value="#{clientesBean.entidade.sobrenome}"></h:inputText>
                 <h:outputLabel value="Endereço"/> 
-                <h:inputText value="#{clientesBean.cliente.endereco}"></h:inputText>
+                <h:inputText value="#{clientesBean.entidade.endereco}"></h:inputText>
                 <h:outputLabel value="Email"/>
-                <h:inputText value="#{clientesBean.cliente.email}"></h:inputText>
+                <h:inputText value="#{clientesBean.entidade.email}"></h:inputText>
                 <h:outputLabel for="tel" value="Telefone"></h:outputLabel> 
-                <p:inputMask id="tel" value="#{clientesBean.cliente.telefone}" mask="(99) 99999-9999"></p:inputMask>
+                <p:inputMask id="tel" value="#{clientesBean.entidade.telefone}" mask="(99) 99999-9999"></p:inputMask>
                 <p:outputLabel for="date" value="Data Nascimento" />
-                <p:inputMask id="date" value="#{clientesBean.cliente.dataNasc}" mask="99/99/9999"/>
-   
+                <p:inputMask id="date" value="#{clientesBean.entidade.dataNasc}" mask="99/99/9999"/>
             </p:panelGrid>  
-              <p:fieldset>
-             <p:toolbar>
-               <p:toolbarGroup>
-                 <p:commandButton value="Cadastrar" action="#{clientesBean.adicionarCliente()}"
-                                 update="@form"></p:commandButton>         
-                   <p:commandButton value="Listar" action="#{clientesBean.listar()}"
-                                 update="@form"></p:commandButton>         
-               </p:toolbarGroup>  
-            </p:toolbar>
-              </p:fieldset>
-           
-            <p:dataTable value="#{clientesBean.clientes}" var="cliente">
+        </p:fieldset>
+              
+          <p:toolbar>
+                  <sc:toolbarCrud CrudBean="#{clientesBean}"> </sc:toolbarCrud>
+                  <p:messages autoUpdate="true" showDetail="true"></p:messages>
+          </p:toolbar>  
+              
+            <p:fieldset>
+            <p:dataTable value="#{clientesBean.entidades}" var="cliente" rendered="#{clientesBean.busca == true}">
                 <p:column>
                     <p:commandButton value="editar" action="#{clientesBean.editar(cliente)}" update=""></p:commandButton>
+                    <p:commandButton value="deletar" action="#{clientesBean.deletar(cliente)}" update=""></p:commandButton>
                 </p:column>
                 <p:column headerText="Cliente">
                     <h:outputText value="#{cliente.nome}"></h:outputText>
@@ -56,7 +54,7 @@
                     <h:outputText value="#{cliente.telefone}"></h:outputText>
                 </p:column>
             </p:dataTable>
-        </p:fieldset>
+            </p:fieldset>
     </h:form>
 </ui:decorate>
 
