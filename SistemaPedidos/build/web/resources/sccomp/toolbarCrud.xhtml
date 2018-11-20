@@ -10,15 +10,17 @@
     </cc:interface>
 
     <!-- IMPLEMENTATION -->
+    <!-- Componente do CRUD -->
     <cc:implementation>
         <p:toolbar>
             <p:toolbarGroup>
-                <p:commandButton value="Novo" action="#{cc.attrs.CrudBean.novo()}"
+                <p:commandButton value="Novo" icon="ui-icon-document" action="#{cc.attrs.CrudBean.novo()}"
                                  update="@form"></p:commandButton>         
-                <p:commandButton value="Salvar" action="#{cc.attrs.CrudBean.salvar()}"
+                <p:commandButton value="Salvar" icon="ui-icon-disk" action="#{cc.attrs.CrudBean.salvar()}"
                                  disabled="#{cc.attrs.CrudBean.busca == true}"  update="@form"></p:commandButton>         
-                <p:commandButton value="Listar" action="#{cc.attrs.CrudBean.buscar()}"
+                <p:commandButton value="Listar"  icon="ui-icon-search" action="#{cc.attrs.CrudBean.buscar()}"
                                  update="@form"></p:commandButton>         
             </p:toolbarGroup>  
+        </p:toolbar>
     </cc:implementation>
 </html>

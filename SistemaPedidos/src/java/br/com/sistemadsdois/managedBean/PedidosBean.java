@@ -23,7 +23,7 @@ public class PedidosBean {
        }
        @PostConstruct
        public void init(){
-        ped = new ArrayList<SelectItem>();
+    ped = new ArrayList<SelectItem>();
         SelectItemGroup tiposelecao = new SelectItemGroup("Tipo:");
         tiposelecao.setSelectItems(new SelectItem[] {
             new SelectItem("Pizza", "Pizza"),
