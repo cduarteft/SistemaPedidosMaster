@@ -5,7 +5,6 @@
              xmlns:p="http://primefaces.org/ui"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
              template="template.xhtml"
-             xmlns:f="http://xmlns.jcp.org/jsf/core"
              xmlns:sc="http://xmlns.jcp.org/jsf/composite/sccomp"> 
              
              <h:form>
@@ -22,9 +21,6 @@
                 <h:inputText value="#{clientesBean.entidade.email}"></h:inputText>
                 <h:outputLabel for="tel" value="Telefone"></h:outputLabel> 
                 <p:inputMask id="tel" value="#{clientesBean.entidade.telefone}" mask="(99) 99999-9999"></p:inputMask>
-                <h:outputLabel value="Data Nascimento"/>
-                <h:inputText value="#{clientesBean.entidade.dataNasc}"></h:inputText>
-                
                 
                 </p:panelGrid>  
               <p:fieldset>
@@ -34,8 +30,8 @@
            
             <p:dataTable value="#{clientesBean.entidades}" var="cliente" rendered="#{clientesBean.busca == true}">
                 <p:column>
-                    <p:commandButton value="editar" action="#{clientesBean.editar(cliente)}" update=""></p:commandButton>
-                    <p:commandButton value="deletar" action="#{clientesBean.deletar(cliente)}" update=""></p:commandButton>
+                    <p:commandButton value="editar" action="#{clientesBean.editar(cliente)}" update="@form"></p:commandButton>
+                    <p:commandButton value="deletar" action="#{clientesBean.deletar(cliente)}" update="@form"></p:commandButton>
                 </p:column>
                 <p:column headerText="Cliente">
                     <h:outputText value="#{cliente.nome}"></h:outputText>
@@ -52,9 +48,7 @@
                 <p:column headerText="Telefone">
                     <h:outputText value="#{cliente.telefone}"></h:outputText>
                 </p:column>
-                <p:column headerText="Data Nascimento">
-                    <h:outputText value="#{cliente.dataNasc}"></h:outputText>
-                </p:column>
+                
             </p:dataTable>
         </p:fieldset>
     </h:form>

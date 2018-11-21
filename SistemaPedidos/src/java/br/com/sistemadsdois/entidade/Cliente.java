@@ -2,7 +2,6 @@
 
 package br.com.sistemadsdois.entidade;
 
-import java.util.Date;
 import java.util.Objects;
 
 
@@ -14,7 +13,7 @@ public class Cliente {
     private String endereco;
     private String email;
     private String telefone;
-    private String dataNasc;
+   
 
     public Integer getId() {
         return id;
@@ -65,13 +64,7 @@ public class Cliente {
         this.telefone = telefone;
     }
 
-    public String getDataNasc() {
-        return dataNasc;
-    }
-
-    public void setDataNasc(String dataNasc) {
-        this.dataNasc = dataNasc;
-    }
+   
 
     @Override
     public int hashCode() {

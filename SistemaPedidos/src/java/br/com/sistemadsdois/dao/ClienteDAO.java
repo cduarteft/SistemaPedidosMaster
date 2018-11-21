@@ -21,17 +21,17 @@ public class ClienteDAO implements CrudDAO<Cliente>{
             Connection conexao = FabricaConexoes.getConexao();
             PreparedStatement ps;
             if(cliente.getId() == null){
-             ps = conexao.prepareStatement("INSERT INTO `cliente` (`nome`,`sobrenome`,`email`,`endereco`,`telefone`,`dataNasc`)  VALUES(?,?,?,?,?,?)");      
+             ps = conexao.prepareStatement("INSERT INTO `cliente` (`nome`,`sobrenome`,`email`,`endereco`,`telefone`)  VALUES(?,?,?,?,?)");      
             }else {
-                ps = conexao.prepareStatement("update cliente set nome=?, sobrenome=?, email=?, endereco=?, telefone=?, dataNasc=? where id=?");
-                ps.setInt(7, cliente.getId());
+                ps = conexao.prepareStatement("update cliente set nome=?, sobrenome=?, email=?, endereco=?, telefone=? where idCliente=?");
+                ps.setInt(6, cliente.getId());
             } 
                 ps.setString(1, cliente.getNome());
                 ps.setString(2, cliente.getSobrenome());
                 ps.setString(3, cliente.getEmail());
                 ps.setString(4, cliente.getEndereco());
                 ps.setString(5, cliente.getTelefone());
-                ps.setString(6, cliente.getDataNasc());
+              
             ps.execute();
             FabricaConexoes.fecharConexao();
         } catch (SQLException ex) {
@@ -42,7 +42,7 @@ public class ClienteDAO implements CrudDAO<Cliente>{
     public void deletar(Cliente cliente) throws ErroSistema{
      try{
         Connection conexao = FabricaConexoes.getConexao();
-        PreparedStatement ps = conexao.prepareStatement("delete from cliente where id= ?");
+        PreparedStatement ps = conexao.prepareStatement("delete from cliente where idCliente=?");
         ps.setInt(1, cliente.getId());
         ps.execute();
     } catch (SQLException ex){
@@ -66,7 +66,7 @@ public class ClienteDAO implements CrudDAO<Cliente>{
             cliente.setEmail(resultSet.getString("email"));
             cliente.setEndereco(resultSet.getString("endereco"));
             cliente.setTelefone(resultSet.getString("telefone"));
-            cliente.setDataNasc(resultSet.getString("dataNasc"));
+            
             clientes.add(cliente);
         }
             FabricaConexoes.fecharConexao();
